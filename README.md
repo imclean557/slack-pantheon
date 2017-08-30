@@ -2,7 +2,7 @@
 
 This is a slight reworking of the [Quicksilver script](https://github.com/pantheon-systems/quicksilver-examples/tree/master/slack_notification) for integrating Pantheon with Slack notifications. It fixes a problem where commit messages were not being sent to Slack. It also includes stronger differentiation between the actions commit, deploy and clear cache in the Slack channel and cuts out some things (which can be uncommented) to keep the information succinct and useful.
 
-The original README continues below.
+A slightly altered version of the original README continues below.
 
 # Slack Integration #
 
@@ -25,7 +25,7 @@ This script shows how easy it is to integrate Slack notifications from your Pant
     sftp> quit
   ```
 
-3. Add, and update as needed, the example `slack_notification.php` script to the `private` directory in the root of your site's codebase, that is under version control. Note this is a different `private` directory than where the secrets.json is stored.
+3. Add, and update as needed, the example `slack_pantheon.php` script to the `private` directory in the root of your site's codebase, that is under version control. Note this is a different `private` directory than where the secrets.json is stored.
 4. Add Quicksilver operations to your `pantheon.yml`
 5. Test a deploy out!
 
@@ -43,26 +43,26 @@ workflows:
     after:
         - type: webphp
           description: Post to Slack after site creation
-          script: private/scripts/slack_notification.php
+          script: private/scripts/slack_pantheon.php
   create_cloud_development_environment:
     after: 
         - type: webphp
           description: Post to Slack after Multidev creation
-          script: private/scripts/slack_notification.php
+          script: private/scripts/slack_pantheon.php
   deploy:
     after:
         - type: webphp
           description: Post to Slack after deploy
-          script: private/scripts/slack_notification.php
+          script: private/scripts/slack_pantheon.php
   sync_code:
     after:
         - type: webphp
           description: Post to Slack after code commit
-          script: private/scripts/slack_notification.php
+          script: private/scripts/slack_pantheon.php
   clear_cache:
     after:
         - type: webphp
           description: Someone is clearing the cache again
-          script: private/scripts/slack_notification.php
+          script: private/scripts/slack_pantheon.php
 ```
 
